@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import MoviesGrid from '../movies/grid/MoviesGrid';
-import EditMovieModal from '../movies/modals/EditMovieModal';
-import DeleteMovieModal from '../movies/modals/DeleteMovieModal';
+import React, { useState, useCallback } from 'react';
+import MoviesGrid from '../grids/MoviesGrid';
+import EditMovieModal from '../modals/EditMovieModal';
+import DeleteMovieModal from '../modals/DeleteMovieModal';
 
 const movies = [
   {
@@ -111,58 +111,50 @@ const movies = [
   },
 ];
 
-class Movies extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      filter: 'all',
-      sortBy: 'release_date',
-      editModal: null,
-      deleteModal: null,
-    };
-  }
+const Movies = () => {
+  const [filter, setFilter] = useState('all');
+  const [sortBy, setSortBy] = useState('release_date');
+  const [editModal, setEditModal] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(null);
 
-  toggleDeleteMovie = (movieId) => this.setState(
-    ({ deleteModal }) => (deleteModal ? { deleteModal: null } : { deleteModal: movieId }),
+  const toggleDeleteMovie = (movieId) => setDeleteModal(
+    (currentDeleteModal) => (currentDeleteModal ? null : movieId),
   );
 
-  handleEditMovie = (movieId) => this.setState({ editModal: movieId });
+  const handleEditMovie = (movieId) => setEditModal(movieId);
 
-  handleEditClose = () => this.setState({ editModal: null });
+  const handleEditClose = () => setEditModal(null);
 
-  handleFilterChange = (filter) => this.setState({ filter });
+  const handleFilterChange = (newFilter) => setFilter(newFilter);
 
-  handleSortChange = (sortBy) => this.setState({ sortBy });
+  const handleSortChange = (newSortBy) => setSortBy(newSortBy);
 
-  render() {
-    const {
-      filter, sortBy, editModal, deleteModal,
-    } = this.state;
-    return (
-      <>
-        <MoviesGrid
-          filter={filter}
-          sortBy={sortBy}
-          movies={movies}
-          handleEditMovie={this.handleEditMovie}
-          toggleDeleteMovie={this.toggleDeleteMovie}
-          handleFilterChange={this.handleFilterChange}
-          handleSortChange={this.handleSortChange}
-        />
-        {editModal && (
+  const getMovie = useCallback(() => movies.find(({ id }) => id === editModal), [editModal]);
+
+  return (
+    <>
+      <MoviesGrid
+        filter={filter}
+        sortBy={sortBy}
+        movies={movies}
+        handleEditMovie={handleEditMovie}
+        toggleDeleteMovie={toggleDeleteMovie}
+        handleFilterChange={handleFilterChange}
+        handleSortChange={handleSortChange}
+      />
+      {editModal && (
         <EditMovieModal
-          onClose={this.handleEditClose}
-          movie={movies.find(({ id }) => id === editModal)}
+          onClose={handleEditClose}
+          movie={getMovie()}
         />
-        )}
-        {deleteModal && (
-          <DeleteMovieModal
-            onClose={this.toggleDeleteMovie}
-          />
-        )}
-      </>
-    );
-  }
-}
+      )}
+      {deleteModal && (
+      <DeleteMovieModal
+        onClose={toggleDeleteMovie}
+      />
+      )}
+    </>
+  );
+};
 
 export default Movies;

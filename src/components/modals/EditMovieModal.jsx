@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Modal from '../../basic/Modal';
-import Label from '../../basic/Label';
-import Button from '../../basic/Button';
+import Modal from '../basic/Modal';
+import Label from '../basic/Label';
+import Button from '../basic/Button';
 import MovieForm from '../forms/MovieForm';
 
 const StyledLabel = styled(Label)`

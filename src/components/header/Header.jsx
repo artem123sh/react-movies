@@ -30,7 +30,7 @@ const StyledHeader = styled.header`
 
 const LogoContainer = styled.div`
   position: absolute;
-  top: 5%; 
+  top: 1rem; 
   left: 5%;
   z-index: 15;
 `;

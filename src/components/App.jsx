@@ -1,12 +1,17 @@
 import React from 'react';
-import Footer from './footer';
+import { Switch, Route } from 'react-router-dom';
+import Footer from './footer/Footer';
 import Movies from './contairnes/Movies';
+import MovieDetails from './contairnes/MovieDetails';
 import ErrorBoundary from './errors/ErrorBoundary';
-import HeaderContainer from './contairnes/Header';
+import Header from './contairnes/Header';
 
 const App = () => (
   <ErrorBoundary>
-    <HeaderContainer />
+    <Switch>
+      <Route exact path="/" component={Header} />
+      <Route exact path="/:id" component={MovieDetails} />
+    </Switch>
     <Movies />
     <Footer />
   </ErrorBoundary>

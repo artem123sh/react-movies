@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Select from '../../../basic/Select';
-import Option from '../../../basic/Option';
-import Tab from '../../../basic/UnderlinedTab';
-import { BACKGROUND_SECONDARY } from '../../../../theme';
+import Select from '../basic/Select';
+import Option from '../basic/Option';
+import Tab from '../basic/UnderlinedTab';
+import { BACKGROUND_SECONDARY } from '../../theme';
 
 const Container = styled.div`
   border-bottom: solid 2px ${BACKGROUND_SECONDARY};

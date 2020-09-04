@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 
 const MoviesFoundLabel = ({ number, className }) => (
   <div className={className}>
-    <b>{number}</b>
-    {' '}
+    <b>{`${number} `}</b>
     movies found
   </div>
 );

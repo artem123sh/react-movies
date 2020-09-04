@@ -1,26 +1,20 @@
-import React, { Component } from 'react';
-import Header from '../header';
-import AddMovieModal from '../movies/modals/AddMovieModal';
+import React, { useState } from 'react';
+import Header from '../header/Header';
+import AddMovieModal from '../modals/AddMovieModal';
 
-class HeaderContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { addMovieModal: false };
-  }
+const HeaderContainer = () => {
+  const [addMovieModal, setAddMovieModal] = useState(false);
 
-  toggleAddMovieModal = () => {
-    this.setState(({ addMovieModal }) => ({ addMovieModal: !addMovieModal }));
-  }
+  const toggleAddMovieModal = () => {
+    setAddMovieModal((newAddMovieModal) => (!newAddMovieModal));
+  };
 
-  render() {
-    const { addMovieModal } = this.state;
-    return (
-      <>
-        <Header toggleAddMovieModal={this.toggleAddMovieModal} />
-        {addMovieModal && <AddMovieModal onClose={this.toggleAddMovieModal} />}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Header toggleAddMovieModal={toggleAddMovieModal} />
+      {addMovieModal && <AddMovieModal onClose={toggleAddMovieModal} />}
+    </>
+  );
+};
 
 export default HeaderContainer;

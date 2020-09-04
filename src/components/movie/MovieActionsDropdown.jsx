@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import ClickAwayListener from '../../basic/ClickAwayListener';
-import { PRIMARY, BACKGROUND } from '../../../theme';
+import ClickAwayListener from '../basic/ClickAwayListener';
+import { PRIMARY, BACKGROUND } from '../../theme';
 
 const StyledMoviesAction = styled.button`
+  z-index: 1;
   letter-spacing: -9px;
   outline: none;
   text-align: center;
@@ -30,7 +31,7 @@ const DropdownContent = styled.div`
   min-width: 160px;
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  z-index: 2;
 `;
 
 const CloseButton = styled.span`
@@ -60,39 +61,30 @@ const SelectableDropdownOption = styled.li`
   }
 `;
 
-class MovieActionsDropdown extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { menu: false };
-  }
+const MovieActionsDropdown = ({ className, onEdit, onDelete }) => {
+  const [menu, setMenu] = useState(false);
 
-  toggleMenu = () => {
-    this.setState(({ menu }) => ({ menu: !menu }));
-  }
+  const toggleMenu = () => setMenu((currentMenu) => !currentMenu);
 
-  render() {
-    const { className, onEdit, onDelete } = this.props;
-    const { menu } = this.state;
-    return (
-      <div>
-        <StyledMoviesAction className={className} onClick={this.toggleMenu}>
-          &#10247;
-        </StyledMoviesAction>
-        {menu && (
-          <ClickAwayListener onClickAway={this.toggleMenu}>
-            <DropdownContent>
-              <DropdownOption>
-                <CloseButton onClick={this.toggleMenu}>&#x2573;</CloseButton>
-              </DropdownOption>
-              <SelectableDropdownOption onClick={onEdit}>Edit</SelectableDropdownOption>
-              <SelectableDropdownOption onClick={onDelete}>Delete</SelectableDropdownOption>
-            </DropdownContent>
-          </ClickAwayListener>
-        )}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <StyledMoviesAction className={className} onClick={toggleMenu}>
+        &#10247;
+      </StyledMoviesAction>
+      {menu && (
+        <ClickAwayListener onClickAway={toggleMenu}>
+          <DropdownContent>
+            <DropdownOption>
+              <CloseButton onClick={toggleMenu}>&#x2573;</CloseButton>
+            </DropdownOption>
+            <SelectableDropdownOption onClick={onEdit}>Edit</SelectableDropdownOption>
+            <SelectableDropdownOption onClick={onDelete}>Delete</SelectableDropdownOption>
+          </DropdownContent>
+        </ClickAwayListener>
+      )}
+    </div>
+  );
+};
 
 MovieActionsDropdown.defaultProps = {
   className: '',

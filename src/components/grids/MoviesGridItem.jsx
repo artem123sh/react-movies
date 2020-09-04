@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import MovieActionsDropdown from './MovieActionsDropdown';
+import { Link } from 'react-router-dom';
+import MovieActionsDropdown from '../movie/MovieActionsDropdown';
 
 const StyledMovieActionsDropdown = styled(MovieActionsDropdown)`
   position: absolute;
@@ -10,17 +11,10 @@ const StyledMovieActionsDropdown = styled(MovieActionsDropdown)`
   display: none;
 `;
 
-const StyledContainer = styled.div`
-  width: 100%;
-  &:hover ${StyledMovieActionsDropdown} {
-    display: block;
-  }
-  position: relative;
-`;
-
 const Poster = styled.img`
   height: auto;
   width: 100%;
+  transition: all 500ms;
 `;
 
 const Title = styled.span`
@@ -30,6 +24,7 @@ const Title = styled.span`
   opacity: 0.7;
   font-weight: bold;
   font-size: 1rem;
+  transition: all 500ms;
 `;
 
 const Year = styled.span`
@@ -42,6 +37,7 @@ const Year = styled.span`
   border: solid 1px;
   border-radius: 5px;
   float: right;
+  transition: all 500ms;
 `;
 
 const Genres = styled.span`
@@ -49,6 +45,29 @@ const Genres = styled.span`
   display: block;
   color: inherit;
   opacity: 0.5;
+  transition: all 500ms;
+`;
+
+const StyledContainer = styled.div`
+  width: 100%;
+  &:hover {
+    ${Title}, ${Genres}, ${Year} {
+      opacity: 1;
+    }
+    ${StyledMovieActionsDropdown} {
+      display: block;
+    }
+    ${Poster} {
+        opacity: 0.5;
+      }
+  }
+  position: relative;
+  cursor: pointer;
+`;
+
+const StyledLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
 `;
 
 const MoviesGridItem = ({
@@ -60,10 +79,12 @@ const MoviesGridItem = ({
   return (
     <StyledContainer>
       <StyledMovieActionsDropdown onEdit={onEdit} onDelete={onDelete} />
-      <Poster src={posterPath} alt="poster" />
-      <Title>{title}</Title>
-      <Year>{new Date(releaseDate).getFullYear()}</Year>
-      <Genres>{genres.length > 2 ? genres.join(', ') : genres.join(' & ')}</Genres>
+      <StyledLink to={`/${id}`}>
+        <Poster src={posterPath} alt="poster" />
+        <Title>{title}</Title>
+        <Year>{new Date(releaseDate).getFullYear()}</Year>
+        <Genres>{genres.length > 2 ? genres.join(', ') : genres.join(' & ')}</Genres>
+      </StyledLink>
     </StyledContainer>
   );
 };

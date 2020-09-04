@@ -1,32 +1,14 @@
-import React, { Component } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
+import useClickAwayListener from '../../hooks/useClickAwayListener';
 
-class ClickAwayListener extends Component {
-  constructor(props) {
-    super(props);
-    this.wrapperRef = React.createRef();
-  }
+const ClickAwayListener = ({ children, onClickAway }) => {
+  const wrapperRef = useRef(null);
+  useClickAwayListener(wrapperRef, onClickAway);
 
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickAway);
-  }
+  return <div ref={wrapperRef}>{children}</div>;
+};
 
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickAway);
-  }
-
-  handleClickAway = (event) => {
-    if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.target)) {
-      const { onClickAway } = this.props;
-      onClickAway();
-    }
-  };
-
-  render() {
-    const { children } = this.props;
-    return <div ref={this.wrapperRef}>{children}</div>;
-  }
-}
 ClickAwayListener.propTypes = {
   children: PropTypes.node.isRequired,
   onClickAway: PropTypes.func.isRequired,

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Input from './Input';
@@ -32,63 +32,51 @@ const ExpandIcon = styled.svg`
   position: absolute;
 `;
 
-class MultiSelect extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { open: false };
-  }
+const MultiSelect = ({
+  values, className, options, id, placeholder,
+}) => {
+  const [open, setOpen] = useState(false);
 
-  toggleOptions = () => {
-    this.setState(({ open }) => ({ open: !open }));
-  }
+  const toggleOptions = () => setOpen((currentOpen) => !currentOpen);
 
-  closeOptions = () => {
-    this.setState(({ open: false }));
-  }
+  const closeOptions = () => setOpen(false);
 
-  render() {
-    const {
-      values, className, options, id, placeholder,
-    } = this.props;
-
-    const { open } = this.state;
-    return (
-      <MultiSelectRoot className={className}>
-        <ClickAwayListener onClickAway={this.closeOptions}>
-          <StyledMultiSelectContainer>
-            <StyledInput
-              placeholder={placeholder}
-              autocomplete="off"
-              id={id}
-              defaultValue={values.join(', ')}
-              onClick={this.toggleOptions}
-            />
-            <ExpandIcon
-              onClick={this.toggleOptions}
-              fill={PRIMARY}
-              height="24"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M7 10l5 5 5-5z" />
-              <path d="M0 0h24v24H0z" fill="none" />
-            </ExpandIcon>
-          </StyledMultiSelectContainer>
-          {open && (
-          <MultiSelectOptionsContainer>
-            {options.map((option) => (
-              <MultiSelectOption selected={values.includes(option)}>
-                {option}
-              </MultiSelectOption>
-            ))}
-          </MultiSelectOptionsContainer>
-          )}
-        </ClickAwayListener>
-      </MultiSelectRoot>
-    );
-  }
-}
+  return (
+    <MultiSelectRoot className={className}>
+      <ClickAwayListener onClickAway={closeOptions}>
+        <StyledMultiSelectContainer>
+          <StyledInput
+            placeholder={placeholder}
+            autocomplete="off"
+            id={id}
+            defaultValue={values.join(', ')}
+            onClick={toggleOptions}
+          />
+          <ExpandIcon
+            onClick={toggleOptions}
+            fill={PRIMARY}
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M7 10l5 5 5-5z" />
+            <path d="M0 0h24v24H0z" fill="none" />
+          </ExpandIcon>
+        </StyledMultiSelectContainer>
+        {open && (
+        <MultiSelectOptionsContainer>
+          {options.map((option) => (
+            <MultiSelectOption selected={values.includes(option)}>
+              {option}
+            </MultiSelectOption>
+          ))}
+        </MultiSelectOptionsContainer>
+        )}
+      </ClickAwayListener>
+    </MultiSelectRoot>
+  );
+};
 
 MultiSelect.defaultProps = {
   className: undefined,
