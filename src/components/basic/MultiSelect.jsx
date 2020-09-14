@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Input from './Input';
 import ClickAwayListener from './ClickAwayListener';
-import MultiSelectOption from './MultiSelectOption';
+import SelectOption from './SelectOption';
 import { PRIMARY, FOOTER_BACKGROUND } from '../../theme';
 
 const MultiSelectRoot = styled.div`
@@ -15,6 +15,8 @@ const MultiSelectOptionsContainer = styled.div`
   background: ${FOOTER_BACKGROUND};
   position: absolute;
   z-index: 1;
+  max-height: 10rem;
+  overflow: auto;
 `;
 
 const StyledMultiSelectContainer = styled.div`
@@ -33,7 +35,7 @@ const ExpandIcon = styled.svg`
 `;
 
 const MultiSelect = ({
-  values, className, options, id, placeholder,
+  values, className, options, id, placeholder, onChange,
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -41,19 +43,26 @@ const MultiSelect = ({
 
   const closeOptions = () => setOpen(false);
 
+  const handleOptionClick = (value) => {
+    const newValues = values.includes(value)
+      ? values.filter((val) => val !== value) : [...values, value];
+    onChange(newValues);
+  };
+
   return (
     <MultiSelectRoot className={className}>
       <ClickAwayListener onClickAway={closeOptions}>
-        <StyledMultiSelectContainer>
+        <StyledMultiSelectContainer onClick={toggleOptions}>
           <StyledInput
+            type="text"
             placeholder={placeholder}
             autocomplete="off"
             id={id}
-            defaultValue={values.join(', ')}
-            onClick={toggleOptions}
+            value={values.join(', ')}
+            disabled
+            readonly
           />
           <ExpandIcon
-            onClick={toggleOptions}
             fill={PRIMARY}
             height="24"
             viewBox="0 0 24 24"
@@ -67,9 +76,14 @@ const MultiSelect = ({
         {open && (
         <MultiSelectOptionsContainer>
           {options.map((option) => (
-            <MultiSelectOption selected={values.includes(option)}>
+            <SelectOption
+              key={option}
+              value={option}
+              selected={values.includes(option)}
+              onClick={() => handleOptionClick(option)}
+            >
               {option}
-            </MultiSelectOption>
+            </SelectOption>
           ))}
         </MultiSelectOptionsContainer>
         )}
@@ -91,6 +105,7 @@ MultiSelect.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
   id: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default MultiSelect;

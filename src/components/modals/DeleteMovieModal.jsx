@@ -14,21 +14,18 @@ const StyledMessage = styled.span`
   font-size: 1.5rem;
 `;
 
-const StyledButton = styled(Button)`
-  margin-left: 1rem;
-`;
-
-const DeleteMovieModal = ({ onClose }) => (
+const DeleteMovieModal = ({ onClose, deleteMovie }) => (
   <Modal title="delete movie" onClose={onClose}>
     <StyledMessage>Are you sure you want to delete this movie?</StyledMessage>
     <StyledActionContainer>
-      <StyledButton variant="contained" size="large">Confirm</StyledButton>
+      <Button variant="contained" size="large" onClick={() => deleteMovie()}>Confirm</Button>
     </StyledActionContainer>
   </Modal>
 );
 
 DeleteMovieModal.propTypes = {
   onClose: PropTypes.func.isRequired,
+  deleteMovie: PropTypes.func.isRequired,
 };
 
 export default DeleteMovieModal;

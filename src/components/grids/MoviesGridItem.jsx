@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import MovieActionsDropdown from '../movie/MovieActionsDropdown';
+import Poster from '../movie/Poster';
 
 const StyledMovieActionsDropdown = styled(MovieActionsDropdown)`
   position: absolute;
@@ -11,8 +12,8 @@ const StyledMovieActionsDropdown = styled(MovieActionsDropdown)`
   display: none;
 `;
 
-const Poster = styled.img`
-  height: auto;
+const StyledPoster = styled(Poster)`
+  height: 85%;
   width: 100%;
   transition: all 500ms;
 `;
@@ -57,7 +58,7 @@ const StyledContainer = styled.div`
     ${StyledMovieActionsDropdown} {
       display: block;
     }
-    ${Poster} {
+    ${StyledPoster} {
         opacity: 0.5;
       }
   }
@@ -65,9 +66,14 @@ const StyledContainer = styled.div`
   cursor: pointer;
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(Link)` 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
   color: inherit;
   text-decoration: none;
+  height: 100%;
 `;
 
 const MoviesGridItem = ({
@@ -80,10 +86,12 @@ const MoviesGridItem = ({
     <StyledContainer>
       <StyledMovieActionsDropdown onEdit={onEdit} onDelete={onDelete} />
       <StyledLink to={`/${id}`}>
-        <Poster src={posterPath} alt="poster" />
-        <Title>{title}</Title>
-        <Year>{new Date(releaseDate).getFullYear()}</Year>
-        <Genres>{genres.length > 2 ? genres.join(', ') : genres.join(' & ')}</Genres>
+        <StyledPoster posterPath={posterPath} alt="poster" />
+        <div>
+          <Title>{title}</Title>
+          <Year>{new Date(releaseDate).getFullYear()}</Year>
+          <Genres>{genres.length > 2 ? genres.join(', ') : genres.join(' & ')}</Genres>
+        </div>
       </StyledLink>
     </StyledContainer>
   );

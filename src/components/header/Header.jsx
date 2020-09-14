@@ -63,7 +63,7 @@ const Header = ({ toggleAddMovieModal }) => (
     <AddMovieButton onClick={toggleAddMovieModal}>+ Add Movie</AddMovieButton>
     <StyledTitle>Find your movie</StyledTitle>
     <SearchMovieInput placeholder="What do you want to watch?" />
-    <SearchButton size="large" variant="contained">Search</SearchButton>
+    <SearchButton size="large" variant="contained" onClick={() => {}}>Search</SearchButton>
   </StyledHeader>
 );
 

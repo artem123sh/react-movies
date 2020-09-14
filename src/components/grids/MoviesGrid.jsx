@@ -20,7 +20,8 @@ const Grid = styled.div`
 `;
 
 const MoviesGrid = ({
-  filter, sortBy, movies, handleEditMovie, toggleDeleteMovie, handleFilterChange, handleSortChange,
+  filter, sortBy, movies, handleEditMovie, toggleDeleteMovie, handleFilterChange,
+  handleSortChange, totalAmount,
 }) => (
   <StyledContainer>
     <GridControls
@@ -29,7 +30,7 @@ const MoviesGrid = ({
       handleFilterChange={handleFilterChange}
       handleSortChange={handleSortChange}
     />
-    <MoviesFoundLabel number={movies.length} />
+    <MoviesFoundLabel number={totalAmount} />
     <Grid>
       {movies.map((movie) => (
         <MovieGridItem
@@ -57,6 +58,7 @@ MoviesGrid.propTypes = {
   })).isRequired,
   filter: PropTypes.string.isRequired,
   sortBy: PropTypes.string.isRequired,
+  totalAmount: PropTypes.number.isRequired,
   handleEditMovie: PropTypes.func.isRequired,
   toggleDeleteMovie: PropTypes.func.isRequired,
   handleFilterChange: PropTypes.func.isRequired,

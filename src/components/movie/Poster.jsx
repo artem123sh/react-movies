@@ -1,8 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import noPoster from './noposter.jpg';
 
-const Poster = ({ posterPath, className }) => <img className={className} src={posterPath} alt="poster" />;
+const StyledImage = styled.img`
+  height: auto;
+  width: 100%;
+`;
+
+const Poster = ({ posterPath, className }) => (
+  <div className={className}>
+    <StyledImage src={posterPath || noPoster} alt="poster" onError={(e) => { e.target.src = noPoster; }} />
+  </div>
+);
 
 Poster.defaultProps = {
   className: undefined,
@@ -13,10 +23,4 @@ Poster.propTypes = {
   posterPath: PropTypes.string.isRequired,
 };
 
-const StyledPoster = styled(Poster)`
-  height: auto;
-  width: 100%;
-  transition: all 500ms;
-`;
-
-export default StyledPoster;
+export default Poster;

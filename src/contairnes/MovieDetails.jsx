@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import MovieDetailsView from '../header/MovieDetails';
+import MovieDetailsView from '../components/header/MovieDetails';
 
 const movie = {
   id: 210577,

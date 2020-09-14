@@ -1,0 +1,2 @@
+export const CLEAR_MOVIE_FORM = 'CLEAR_MOVIE_FORM';
+export const SET_FORM_FIELD = 'SET_FORM_FIELD';

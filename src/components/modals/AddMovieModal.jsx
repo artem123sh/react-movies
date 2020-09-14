@@ -15,12 +15,14 @@ const StyledButton = styled(Button)`
   margin-left: 1rem;
 `;
 
-const AddMovieModal = ({ onClose }) => (
+const AddMovieModal = ({
+  onClose, handleMovieAdd, setFormField, movie, resetForm,
+}) => (
   <Modal size="small" title="add movie" onClose={onClose}>
-    <MovieForm>
+    <MovieForm setFormField={setFormField} onSubmit={handleMovieAdd} movie={movie}>
       <StyledActionContainer>
-        <StyledButton variant="outlined" size="large">Reset</StyledButton>
-        <StyledButton variant="contained" size="large">Submit</StyledButton>
+        <StyledButton variant="outlined" size="large" onClick={resetForm}>Reset</StyledButton>
+        <StyledButton variant="contained" size="large" onClick={handleMovieAdd}>Submit</StyledButton>
       </StyledActionContainer>
     </MovieForm>
   </Modal>
@@ -28,6 +30,10 @@ const AddMovieModal = ({ onClose }) => (
 
 AddMovieModal.propTypes = {
   onClose: PropTypes.func.isRequired,
+  handleMovieAdd: PropTypes.func.isRequired,
+  setFormField: PropTypes.func.isRequired,
+  resetForm: PropTypes.func.isRequired,
+  movie: PropTypes.shape().isRequired,
 };
 
 export default AddMovieModal;

@@ -28,24 +28,28 @@ const StyledButton = styled(Button)`
   margin-left: 1rem;
 `;
 
-const EditMovieModal = ({ onClose, movie }) => (
+const EditMovieModal = ({
+  onClose, movie, setFormField, editMovie, resetForm, movieId,
+}) => (
   <Modal size="small" title="edit movie" onClose={onClose}>
     <StyledLabel>Movie Id</StyledLabel>
-    <StyledPermanentValue>{movie.id}</StyledPermanentValue>
-    <MovieForm movie={movie}>
+    <StyledPermanentValue>{movieId}</StyledPermanentValue>
+    <MovieForm movie={movie} setFormField={setFormField} onSubmit={editMovie}>
       <StyledActionContainer>
-        <StyledButton variant="outlined" size="large">Reset</StyledButton>
-        <StyledButton variant="contained" size="large">Save</StyledButton>
+        <StyledButton variant="outlined" size="large" onClick={resetForm}>Reset</StyledButton>
+        <StyledButton variant="contained" size="large" onClick={editMovie}>Save</StyledButton>
       </StyledActionContainer>
     </MovieForm>
   </Modal>
 );
 
 EditMovieModal.propTypes = {
+  movieId: PropTypes.number.isRequired,
   onClose: PropTypes.func.isRequired,
-  movie: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-  }).isRequired,
+  movie: PropTypes.shape().isRequired,
+  setFormField: PropTypes.func.isRequired,
+  editMovie: PropTypes.func.isRequired,
+  resetForm: PropTypes.func.isRequired,
 };
 
 export default EditMovieModal;

@@ -5,6 +5,7 @@ import Input from '../basic/Input';
 import DatePicker from '../basic/DatePicker';
 import MultiSelect from '../basic/MultiSelect';
 import Label from '../basic/Label';
+import { GENRES } from '../../constants';
 
 const StyledLabel = styled(Label)`
   margin-bottom: 0.5rem;
@@ -36,27 +37,32 @@ const DatePickerContainer = styled.div`
   ${inputStyles}
 `;
 
-const MovieForm = ({ movie, children }) => (
+const MovieForm = ({
+  movie, children, setFormField,
+}) => (
   <form>
     <StyledLabel htmlFor="title">Title</StyledLabel>
-    <StyledInput id="title" placeholder="Title" defaultValue={movie.title} />
+    <StyledInput id="title" placeholder="Title" value={movie.title} onChange={(e) => setFormField('title', e.target.value)} />
     <StyledLabel htmlFor="release_date">Release Date</StyledLabel>
     <DatePickerContainer>
-      <StyledDatePicker id="release_date" placeholder="Select Date" value={movie.release_date} />
+      <StyledDatePicker id="release_date" placeholder="Select Date" value={movie.release_date ? new Date(movie.release_date) : null} onChange={(date) => setFormField('release_date', date.toISOString().slice(0, 10))} />
     </DatePickerContainer>
     <StyledLabel htmlFor="poster_path">Movie Url</StyledLabel>
-    <StyledInput id="poster_path" placeholder="Movie Url here" defaultValue={movie.poster_path} />
+    <StyledInput id="poster_path" placeholder="Movie Url here" value={movie.poster_path} onChange={(e) => setFormField('poster_path', e.target.value)} />
     <StyledLabel htmlFor="genres">Genre</StyledLabel>
     <StyledMultuSelect
       id="genres"
       placeholder="Select Genre"
       values={movie.genres}
-      options={['Drama', 'Thriller', 'Crime', 'Mystery', 'Animation']}
+      options={GENRES}
+      onChange={(genres) => setFormField('genres', genres)}
     />
     <StyledLabel htmlFor="overview">Overview</StyledLabel>
-    <StyledInput id="overview" placeholder="Overview here" defaultValue={movie.overview} />
+    <StyledInput id="overview" placeholder="Overview here" value={movie.overview} onChange={(e) => setFormField('overview', e.target.value)} />
     <StyledLabel htmlFor="runtime">Runtime</StyledLabel>
-    <StyledInput id="runtime" placeholder="Runtime here" defaultValue={movie.runtime ? movie.runtime.toString() : ''} />
+    <StyledInput id="runtime" placeholder="Runtime here" value={movie.runtime ? movie.runtime.toString() : ''} onChange={(e) => setFormField('runtime', Number(e.target.value))} />
+    <StyledLabel htmlFor="tagline">Tagline</StyledLabel>
+    <StyledInput id="tagline" placeholder="Tagline" value={movie.tagline ? movie.tagline.toString() : ''} onChange={(e) => setFormField('tagline', e.target.value)} />
     {children}
   </form>
 );
@@ -69,6 +75,7 @@ MovieForm.defaultProps = {
     genres: [],
     overview: '',
     runtime: 0,
+    tagline: 0,
   },
 };
 
@@ -80,8 +87,10 @@ MovieForm.propTypes = {
     genres: PropTypes.arrayOf(PropTypes.string),
     overview: PropTypes.string,
     runtime: PropTypes.number,
+    tagline: PropTypes.string,
   }),
   children: PropTypes.node.isRequired,
+  setFormField: PropTypes.func.isRequired,
 };
 
 export default MovieForm;

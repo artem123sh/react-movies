@@ -2,20 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const MoviesFoundLabel = ({ number, className }) => (
-  <div className={className}>
+const MoviesFoundLabel = ({ number }) => (
+  <div>
     <b>{`${number} `}</b>
     movies found
   </div>
 );
 
-MoviesFoundLabel.defaultProps = {
-  className: '',
-};
-
 MoviesFoundLabel.propTypes = {
   number: PropTypes.number.isRequired,
-  className: PropTypes.string,
 };
 
 const StyledMoviesFoundLabel = styled(MoviesFoundLabel)`

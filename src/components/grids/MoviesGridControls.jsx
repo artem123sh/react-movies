@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Select from '../basic/Select';
-import Option from '../basic/Option';
 import Tab from '../basic/UnderlinedTab';
 import { BACKGROUND_SECONDARY } from '../../theme';
 
@@ -14,12 +13,12 @@ const Container = styled.div`
 `;
 
 const FilterContainer = styled.div`
-  widht: 100%;
-  float: right;
+  display: flex;
+  align-items: center;
 `;
 
 const FilterLabel = styled.span`
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
   text-transform: uppercase;
   opacity: 0.5;
   font-size: 1rem;
@@ -32,11 +31,11 @@ const StyledSelect = styled(Select)`
 const StyledTab = styled(Tab)`
   padding: 1rem 0;
   margin-right: 2rem;
-  margin-bottom: -2px;
+  margin-bottom: -4px;
 `;
 
 export const filters = {
-  all: 'All',
+  '': 'All',
   documentary: 'Documentary',
   comedy: 'Comedy',
   horror: 'Horror',
@@ -44,14 +43,8 @@ export const filters = {
 };
 
 export const sortOptions = {
-  title: 'Title',
-  tagline: 'Tagline',
-  vote_average: 'Vote Average',
-  vote_count: 'Votes',
   release_date: 'Release Date',
-  budget: 'Budget',
-  revenue: 'Revenue',
-  runtime: 'Runtime',
+  vote_average: 'Raiting',
 };
 
 const GridControls = ({
@@ -71,18 +64,14 @@ const GridControls = ({
     </div>
     <FilterContainer>
       <FilterLabel>Sort By</FilterLabel>
-      <StyledSelect value={sortBy} onChange={(event) => handleSortChange(event.target.value)}>
-        {Object.entries(sortOptions).map(
-          ([key, value]) => <Option key={key} value={key}>{value}</Option>,
-        )}
-      </StyledSelect>
+      <StyledSelect value={sortBy} options={sortOptions} onChange={handleSortChange} />
     </FilterContainer>
   </Container>
 );
 
 GridControls.propTypes = {
-  filter: PropTypes.oneOf(['all', 'documentary', 'comedy', 'horror', 'crime']).isRequired,
-  sortBy: PropTypes.oneOf(['title', 'tagline', 'vote_average', 'vote_count', 'release_date', 'budget', 'revenue', 'runtime']).isRequired,
+  filter: PropTypes.oneOf(['', 'documentary', 'comedy', 'horror', 'crime']).isRequired,
+  sortBy: PropTypes.oneOf(['vote_average', 'release_date']).isRequired,
   handleFilterChange: PropTypes.func.isRequired,
   handleSortChange: PropTypes.func.isRequired,
 };

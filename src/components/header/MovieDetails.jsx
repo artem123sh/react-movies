@@ -43,8 +43,7 @@ const SearchIcon = styled.span`
 const StyledPoster = styled(Poster)`
   top: 15%;
   left: 5%;
-  height: auto;
-  width: 30%;
+  flex-grow: 1;
 `;
 
 const Rating = styled.span`
@@ -83,11 +82,12 @@ const PrimaryMovieDetails = styled.p`
 const MovieDetailsRightPanel = styled.div`
   padding: 1% 5%;
   height: 100%;
+  flex-grow: 1;
 `;
 
 const Section = styled.div`
   display: flex;
-  alignItems: center;
+  align-items: center;
 `;
 
 const MovieDetails = ({
