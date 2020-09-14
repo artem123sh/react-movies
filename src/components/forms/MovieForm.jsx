@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Input from '../../basic/Input';
-import DatePicker from '../../basic/DatePicker';
-import MultiSelect from '../../basic/MultiSelect';
-import Label from '../../basic/Label';
+import Input from '../basic/Input';
+import DatePicker from '../basic/DatePicker';
+import MultiSelect from '../basic/MultiSelect';
+import Label from '../basic/Label';
 
 const StyledLabel = styled(Label)`
   margin-bottom: 0.5rem;

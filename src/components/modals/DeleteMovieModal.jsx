@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Modal from '../../basic/Modal';
-import Button from '../../basic/Button';
+import Modal from '../basic/Modal';
+import Button from '../basic/Button';
 
 const StyledActionContainer = styled.div`
   display: flex;

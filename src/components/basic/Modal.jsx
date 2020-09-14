@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { PRIMARY, BACKGROUND } from '../../theme';
@@ -63,37 +63,33 @@ const ModalBody = styled.div`
   margin: 0 3rem;
 `;
 
-class Modal extends Component {
-  componentDidMount() {
+const Modal = ({
+  className, onClose, title, children,
+}) => {
+  useEffect(() => {
     document.body.style.overflow = 'hidden';
-  }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
 
-  componentWillUnmount() {
-    document.body.style.overflow = 'unset';
-  }
-
-  render() {
-    const {
-      className, onClose, title, children,
-    } = this.props;
-    return (
-      <>
-        <Overlay />
-        <ModalContainer className={className}>
-          <ClickAwayListener onClickAway={onClose}>
-            <Header><CloseButton onClick={onClose}>&#x2573;</CloseButton></Header>
-            <ModalContent>
-              <ModalTitle>{title}</ModalTitle>
-              <ModalBody>
-                {children}
-              </ModalBody>
-            </ModalContent>
-          </ClickAwayListener>
-        </ModalContainer>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Overlay />
+      <ModalContainer className={className}>
+        <ClickAwayListener onClickAway={onClose}>
+          <Header><CloseButton onClick={onClose}>&#x2573;</CloseButton></Header>
+          <ModalContent>
+            <ModalTitle>{title}</ModalTitle>
+            <ModalBody>
+              {children}
+            </ModalBody>
+          </ModalContent>
+        </ClickAwayListener>
+      </ModalContainer>
+    </>
+  );
+};
 
 Modal.defaultProps = {
   className: '',

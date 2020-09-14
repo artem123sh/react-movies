@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { BACKGROUND } from '../../../theme';
-import GridControls from './controls/GridControls';
-import MoviesFoundLabel from './MoviesFoundLabel';
-import MovieGridItem from './MovieGridItem';
+import { BACKGROUND } from '../../theme';
+import GridControls from './MoviesGridControls';
+import MoviesFoundLabel from './MoviesTotalFoundLabel';
+import MovieGridItem from './MoviesGridItem';
 
 const StyledContainer = styled.div`
   background: ${BACKGROUND};
