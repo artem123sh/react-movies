@@ -1,37 +1,40 @@
-import React, { Component } from 'react';
+import React, { forwardRef, createRef } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
-import Input from './Input';
+import styled from 'styled-components';
+import { FOOTER_BACKGROUND } from '../../theme';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-class DatePicker extends Component {
-  constructor(props) {
-    super(props);
-    const { value } = this.props;
-    this.state = { date: value ? new Date(value) : null };
-  }
+const StyledInput = styled.input`
+height: 3rem;
+width: 100%;
+border: 0;
+border-radius: 5px;
+background: ${FOOTER_BACKGROUND};
+opacity: 0.7;
+font-size: 1.5rem;
+color: inherit;
+`;
 
-  changeDate = (date) => {
-    this.setState({ date });
-  }
+const DatePickerInput = forwardRef((props, _ref) => 
+  <StyledInput {...props} ref={_ref}/>
+);
 
-  render() {
-    const {
-      className, value, id, placeholder,
-    } = this.props;
-    const { date } = this.state;
-    return (
-      <ReactDatePicker
-        className={className}
-        selected={date}
-        onChange={this.changeDate}
-        customInput={<Input id={id} value={value} />}
-        placeholderText={placeholder}
-      />
-    );
-  }
-}
+const DatePicker = ({
+  className, value, id, placeholder, onChange,
+}) => {
+  const ref = createRef(); 
+
+  return(
+  <ReactDatePicker
+    className={className}
+    selected={value}
+    onChange={(newDate) => onChange(newDate)}
+    customInput={<DatePickerInput id={id} value={value} placeholder={placeholder} ref={ref} />}
+    placeholderText={placeholder}
+  />
+)};
 
 DatePicker.defaultProps = {
   className: undefined,
@@ -45,6 +48,7 @@ DatePicker.propTypes = {
   value: PropTypes.instanceOf(Date),
   id: PropTypes.string,
   placeholder: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default DatePicker;

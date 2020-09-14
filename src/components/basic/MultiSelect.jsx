@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Input from './Input';
 import ClickAwayListener from './ClickAwayListener';
-import MultiSelectOption from './MultiSelectOption';
+import SelectOption from './SelectOption';
 import { PRIMARY, FOOTER_BACKGROUND } from '../../theme';
 
 const MultiSelectRoot = styled.div`
@@ -15,6 +15,8 @@ const MultiSelectOptionsContainer = styled.div`
   background: ${FOOTER_BACKGROUND};
   position: absolute;
   z-index: 1;
+  max-height: 10rem;
+  overflow: auto;
 `;
 
 const StyledMultiSelectContainer = styled.div`
@@ -32,63 +34,63 @@ const ExpandIcon = styled.svg`
   position: absolute;
 `;
 
-class MultiSelect extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { open: false };
-  }
+const MultiSelect = ({
+  values, className, options, id, placeholder, onChange,
+}) => {
+  const [open, setOpen] = useState(false);
 
-  toggleOptions = () => {
-    this.setState(({ open }) => ({ open: !open }));
-  }
+  const toggleOptions = () => setOpen((currentOpen) => !currentOpen);
 
-  closeOptions = () => {
-    this.setState(({ open: false }));
-  }
+  const closeOptions = () => setOpen(false);
 
-  render() {
-    const {
-      values, className, options, id, placeholder,
-    } = this.props;
+  const handleOptionClick = (value) => {
+    const newValues = values.includes(value)
+      ? values.filter((val) => val !== value) : [...values, value];
+    onChange(newValues);
+  };
 
-    const { open } = this.state;
-    return (
-      <MultiSelectRoot className={className}>
-        <ClickAwayListener onClickAway={this.closeOptions}>
-          <StyledMultiSelectContainer>
-            <StyledInput
-              placeholder={placeholder}
-              autocomplete="off"
-              id={id}
-              defaultValue={values.join(', ')}
-              onClick={this.toggleOptions}
-            />
-            <ExpandIcon
-              onClick={this.toggleOptions}
-              fill={PRIMARY}
-              height="24"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
+  return (
+    <MultiSelectRoot className={className}>
+      <ClickAwayListener onClickAway={closeOptions}>
+        <StyledMultiSelectContainer onClick={toggleOptions}>
+          <StyledInput
+            type="text"
+            placeholder={placeholder}
+            autocomplete="off"
+            id={id}
+            value={values.join(', ')}
+            disabled
+            readonly
+          />
+          <ExpandIcon
+            fill={PRIMARY}
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M7 10l5 5 5-5z" />
+            <path d="M0 0h24v24H0z" fill="none" />
+          </ExpandIcon>
+        </StyledMultiSelectContainer>
+        {open && (
+        <MultiSelectOptionsContainer>
+          {options.map((option) => (
+            <SelectOption
+              key={option}
+              value={option}
+              selected={values.includes(option)}
+              onClick={() => handleOptionClick(option)}
             >
-              <path d="M7 10l5 5 5-5z" />
-              <path d="M0 0h24v24H0z" fill="none" />
-            </ExpandIcon>
-          </StyledMultiSelectContainer>
-          {open && (
-          <MultiSelectOptionsContainer>
-            {options.map((option) => (
-              <MultiSelectOption selected={values.includes(option)}>
-                {option}
-              </MultiSelectOption>
-            ))}
-          </MultiSelectOptionsContainer>
-          )}
-        </ClickAwayListener>
-      </MultiSelectRoot>
-    );
-  }
-}
+              {option}
+            </SelectOption>
+          ))}
+        </MultiSelectOptionsContainer>
+        )}
+      </ClickAwayListener>
+    </MultiSelectRoot>
+  );
+};
 
 MultiSelect.defaultProps = {
   className: undefined,
@@ -103,6 +105,7 @@ MultiSelect.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
   id: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default MultiSelect;

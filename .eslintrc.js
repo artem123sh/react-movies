@@ -19,5 +19,6 @@ module.exports = {
     'react',
   ],
   rules: {
+    'react/state-in-constructor': false,
   },
 };

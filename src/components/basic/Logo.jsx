@@ -2,26 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { PRIMARY } from '../../theme';
 
-const base = `
+const LogoTitle = styled.span`
   color: ${PRIMARY};
   font-weight: 500;
   font-size: 1.5rem;
-`;
-
-const Netflix = styled.span`
-  ${base}
-  font-family: Segoe UI Black;
-`;
-
-const Roulette = styled.span`
-  ${base}
-  font-family: Segoe UI Light;
+  font-family: ${({ font }) => font};
 `;
 
 const Logo = () => (
   <>
-    <Netflix>netflix</Netflix>
-    <Roulette>roulette</Roulette>
+    <LogoTitle font="Segoe UI Black">netflix</LogoTitle>
+    <LogoTitle font="Segoe UI Light">roulette</LogoTitle>
   </>
 );
 
