@@ -1,6 +1,10 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import {
+  Formik, Form, useField, useFormikContext,
+} from 'formik';
 import Input from '../basic/Input';
 import DatePicker from '../basic/DatePicker';
 import MultiSelect from '../basic/MultiSelect';
@@ -9,10 +13,8 @@ import { GENRES } from '../../constants';
 
 const StyledLabel = styled(Label)`
   margin-bottom: 0.5rem;
-`;
-
-const inputStyles = `
-  margin: 0.5rem 0 1.5rem 0;
+  margin-top: 1.5rem;
+  display: block;
 `;
 
 const StyledDatePicker = styled(DatePicker)`
@@ -23,48 +25,164 @@ const StyledDatePicker = styled(DatePicker)`
 const StyledInput = styled(Input)`
   width: calc(100% - 2rem);
   padding: 0 1rem;
-  ${inputStyles}
-`;
 
-const StyledMultuSelect = styled(MultiSelect)`
-  ${inputStyles}
 `;
 
 const DatePickerContainer = styled.div`
   .react-datepicker-wrapper {
     width: 100%;
   }
-  ${inputStyles}
 `;
 
+const ErrorLabel = styled.div`
+  color: red;
+  font-size: 1.3rem;
+`;
+
+const FormikInput = (props) => {
+  const {
+    id, label, name, type, placeholder,
+  } = props;
+  const [field, meta] = useField(props);
+  return (
+    <>
+      <StyledLabel htmlFor={id}>{label}</StyledLabel>
+      <StyledInput
+        id={id}
+        name={name}
+        placeholder={placeholder}
+        type={type}
+        value={field.value ? field.value.toString() : ''}
+        onChange={field.onChange}
+      />
+      {meta.touched && meta.error && <ErrorLabel>{meta.error}</ErrorLabel>}
+    </>
+  );
+};
+
+FormikInput.propTypes = {
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+};
+
+export const FormikDatePicker = (props) => {
+  const {
+    label, id, name, placeholder,
+  } = props;
+  const { setFieldValue } = useFormikContext();
+  const [field, meta] = useField(props);
+  return (
+    <>
+      <StyledLabel htmlFor={id}>{label}</StyledLabel>
+      <DatePickerContainer>
+        <StyledDatePicker
+          id={id}
+          name={name}
+          placeholder={placeholder}
+          value={field.value ? new Date(field.value) : null}
+          onChange={(val) => setFieldValue(field.name, val.toISOString().slice(0, 10))}
+        />
+      </DatePickerContainer>
+      {meta.touched && meta.error && <ErrorLabel>{meta.error}</ErrorLabel>}
+    </>
+  );
+};
+
+FormikDatePicker.propTypes = {
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+};
+
+export const FormikMultiSelect = (props) => {
+  const {
+    id, label, placeholder, options,
+  } = props;
+  const { setFieldValue } = useFormikContext();
+  const [field, meta] = useField(props);
+
+  return (
+    <>
+      <StyledLabel htmlFor={id}>{label}</StyledLabel>
+      <MultiSelect
+        id={id}
+        placeholder={placeholder}
+        values={field.value || []}
+        options={options}
+        onChange={(val) => setFieldValue(field.name, val)}
+      />
+      {meta.touched && meta.error && <ErrorLabel>{meta.error}</ErrorLabel>}
+    </>
+  );
+};
+
+FormikMultiSelect.propTypes = {
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  placeholder: PropTypes.string.isRequired,
+};
+
 const MovieForm = ({
-  movie, children, setFormField,
+  movie, onSubmit, children,
 }) => (
-  <form>
-    <StyledLabel htmlFor="title">Title</StyledLabel>
-    <StyledInput id="title" placeholder="Title" value={movie.title} onChange={(e) => setFormField('title', e.target.value)} />
-    <StyledLabel htmlFor="release_date">Release Date</StyledLabel>
-    <DatePickerContainer>
-      <StyledDatePicker id="release_date" placeholder="Select Date" value={movie.release_date ? new Date(movie.release_date) : null} onChange={(date) => setFormField('release_date', date.toISOString().slice(0, 10))} />
-    </DatePickerContainer>
-    <StyledLabel htmlFor="poster_path">Movie Url</StyledLabel>
-    <StyledInput id="poster_path" placeholder="Movie Url here" value={movie.poster_path} onChange={(e) => setFormField('poster_path', e.target.value)} />
-    <StyledLabel htmlFor="genres">Genre</StyledLabel>
-    <StyledMultuSelect
-      id="genres"
-      placeholder="Select Genre"
-      values={movie.genres}
-      options={GENRES}
-      onChange={(genres) => setFormField('genres', genres)}
-    />
-    <StyledLabel htmlFor="overview">Overview</StyledLabel>
-    <StyledInput id="overview" placeholder="Overview here" value={movie.overview} onChange={(e) => setFormField('overview', e.target.value)} />
-    <StyledLabel htmlFor="runtime">Runtime</StyledLabel>
-    <StyledInput id="runtime" placeholder="Runtime here" value={movie.runtime ? movie.runtime.toString() : ''} onChange={(e) => setFormField('runtime', Number(e.target.value))} />
-    <StyledLabel htmlFor="tagline">Tagline</StyledLabel>
-    <StyledInput id="tagline" placeholder="Tagline" value={movie.tagline ? movie.tagline.toString() : ''} onChange={(e) => setFormField('tagline', e.target.value)} />
-    {children}
-  </form>
+  <Formik
+    initialValues={movie}
+    validate={(values) => {
+      const errors = {};
+      const required = 'Required Field!';
+      const {
+        title,
+        tagline,
+        release_date,
+        poster_path,
+        overview,
+        runtime,
+        genres,
+      } = values;
+      Object.entries({
+        title,
+        tagline,
+        release_date,
+        poster_path,
+        overview,
+        runtime,
+        genres,
+      })
+        .filter(([, value]) => !value)
+        .forEach(([key]) => { errors[key] = required; });
+      if (!values.genres.length) {
+        errors.genres = required;
+      }
+      if (!Number.parseInt(values.runtime, 10)) {
+        errors.runtime = 'Should be a number!';
+      }
+      const urlRegex = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/;
+      if (!urlRegex.test(values.poster_path)) {
+        errors.poster_path = 'Should be a valid URL!';
+      }
+      return errors;
+    }}
+    onSubmit={async (values, { setSubmitting }) => {
+      await onSubmit(values);
+      setSubmitting(false);
+    }}
+  >
+    <Form>
+      <FormikInput id="title" label="Title" name="title" type="text" placeholder="Title" inputClassName={StyledInput} />
+      <FormikDatePicker id="release_date" label="Release Date" name="release_date" placeholder="Select Date" />
+      <FormikInput id="poster_path" label="Movie Url" name="poster_path" type="text" placeholder="Movie Url here" inputClassName={StyledInput} />
+      <FormikMultiSelect id="genres" label="Genre" name="genres" placeholder="Select Genre" options={GENRES} />
+      <FormikInput id="overview" label="Overview" name="overview" type="text" placeholder="Overview here" inputClassName={StyledInput} />
+      <FormikInput id="runtime" label="Runtime" name="runtime" placeholder="Runtime here" type="number" inputClassName={StyledInput} />
+      <FormikInput id="tagline" label="Tagline" name="tagline" type="text" placeholder="Tagline here" inputClassName={StyledInput} />
+      {children}
+    </Form>
+  </Formik>
 );
 
 MovieForm.defaultProps = {
@@ -75,7 +193,7 @@ MovieForm.defaultProps = {
     genres: [],
     overview: '',
     runtime: 0,
-    tagline: 0,
+    tagline: '',
   },
 };
 
@@ -90,7 +208,7 @@ MovieForm.propTypes = {
     tagline: PropTypes.string,
   }),
   children: PropTypes.node.isRequired,
-  setFormField: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default MovieForm;

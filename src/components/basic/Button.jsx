@@ -5,29 +5,35 @@ import { PRIMARY } from '../../theme';
 
 const Button = ({
   // eslint-disable-next-line no-unused-vars
-  children, size, className, onClick, variant,
+  children, size, className, onClick, variant, type, onSubmit,
 }) => (
   <button
     onClick={onClick}
+    onSubmit={onSubmit}
     className={className}
-    type="button"
+    type={type}
   >
     {children}
   </button>
 );
 
 Button.defaultProps = {
+  onClick: undefined,
+  onSubmit: undefined,
   size: undefined,
   className: undefined,
   variant: undefined,
+  type: 'button',
 };
 
 Button.propTypes = {
   size: PropTypes.oneOf(['large', undefined]),
   variant: PropTypes.oneOf(['contained', 'outlined', undefined]),
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+  onSubmit: PropTypes.func,
   className: PropTypes.string,
+  type: PropTypes.string,
 };
 
 const StyledButton = styled(Button)`
