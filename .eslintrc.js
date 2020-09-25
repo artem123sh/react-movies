@@ -19,6 +19,7 @@ module.exports = {
     'react',
   ],
   rules: {
-    'react/state-in-constructor': false,
+    'react/state-in-constructor': 1,
+    'react/button-has-type': 0,
   },
 };
