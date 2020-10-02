@@ -50,6 +50,7 @@ const Genres = styled.span`
 `;
 
 const StyledContainer = styled.div`
+  max-width: 20rem;
   width: 100%;
   &:hover {
     ${Title}, ${Genres}, ${Year} {
@@ -85,7 +86,7 @@ const MoviesGridItem = ({
   return (
     <StyledContainer>
       <StyledMovieActionsDropdown onEdit={onEdit} onDelete={onDelete} />
-      <StyledLink to={`/${id}`}>
+      <StyledLink to={`/film/${id}`}>
         <StyledPoster posterPath={posterPath} alt="poster" />
         <div>
           <Title>{title}</Title>

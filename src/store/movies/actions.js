@@ -21,14 +21,13 @@ export const getMoviesRequestError = (error) => ({
 
 export const getMovies = (
   {
-    filter, offset: currentOffset, sortBy, sortOrder,
+    filter, offset: currentOffset, sortBy, sortOrder, search,
   },
 ) => async (dispatch, getState, apiUrl) => {
   const urlSearchParams = new URLSearchParams({
-    filter, offset: currentOffset, sortBy, sortOrder,
+    filter, offset: currentOffset, sortBy, sortOrder, search, searchBy: search ? 'title' : '',
   });
   dispatch(getMoviesRequestStart());
-  // eslint-disable-next-line no-new
   return new Promise((resolve, reject) => {
     (async () => {
       try {

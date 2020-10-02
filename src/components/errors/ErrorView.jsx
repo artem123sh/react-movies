@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Footer from '../footer/Footer';
 import Logo from '../basic/Logo';
+import Button from '../basic/Button';
 import { BACKGROUND } from '../../theme';
 
 const ErrorViewContainer = styled.div`
@@ -45,8 +46,8 @@ const ErrorView = ({ errorLabel, error }) => (
       <LogoContainer><Logo /></LogoContainer>
       <ErrorLabel>{errorLabel}</ErrorLabel>
       <Error>{error}</Error>
+      <Link to="/"><Button variant="outlined">Go Back To Home</Button></Link>
     </ErrorViewContent>
-    <Footer />
   </ErrorViewContainer>
 );
 

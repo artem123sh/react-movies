@@ -1,34 +1,27 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import MovieDetailsView from '../components/header/MovieDetails';
+import { getMovie as getMovieAction } from '../store/movie/actions';
 
-const movie = {
-  id: 210577,
-  title: 'Gone Girl',
-  tagline: "You don't know what you've got 'til it's...",
-  vote_average: 7.9,
-  vote_count: 7458,
-  release_date: '2014-10-01',
-  poster_path: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/qymaJhucquUwjpb8oiqynMeXnID.jpg',
-  overview: "With his wife's disappearance having become the focus of an intense media circus, a man sees the spotlight turned on him when it's suspected that he may not be innocent.",
-  budget: 61000000,
-  revenue: 369330363,
-  genres: [
-    'Mystery',
-    'Thriller',
-    'Drama',
-  ],
-  runtime: 145,
-};
-
-const MovieDetails = () => {
-  const movieId = useParams();
+const MovieDetails = ({ getMovie, movie, error }) => {
+  const { id } = useParams();
+  const history = useHistory();
 
   useEffect(() => {
+    getMovie(Number(id));
     globalThis.scrollTo(0, 0);
-  }, [movieId]);
+  }, [id]);
+
+  useEffect(() => {
+    if (error) {
+      history.push('/404');
+    }
+  }, [error]);
 
   return (
+    movie && (
     <MovieDetailsView
       title={movie.title}
       releaseDate={movie.release_date}
@@ -38,7 +31,24 @@ const MovieDetails = () => {
       voteAverage={movie.vote_average}
       overview={movie.overview}
     />
+    )
   );
 };
 
-export default MovieDetails;
+MovieDetails.defaultProps = {
+  error: undefined,
+  movie: undefined,
+};
+
+MovieDetails.propTypes = {
+  getMovie: PropTypes.func.isRequired,
+  movie: PropTypes.shape(),
+  error: PropTypes.shape(),
+};
+
+const mapStateToProps = (state) => {
+  const { movie: { movie, error } } = state;
+  return { movie, error };
+};
+
+export default connect(mapStateToProps, { getMovie: getMovieAction })(MovieDetails);
