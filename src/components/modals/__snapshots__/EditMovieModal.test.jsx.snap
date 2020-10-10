@@ -1,0 +1,198 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditMovieModal renders EditMovieModal's snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxirZ kYxXGN"
+  />
+  <div
+    class="sc-AxiKw ghPDlE"
+  >
+    <div>
+      <div
+        class="sc-AxhUy fSLCtT"
+      >
+        <span
+          class="sc-AxhCb fGYvSv"
+        >
+          ╳
+        </span>
+      </div>
+      <div
+        class="sc-AxheI iMsYLJ"
+      >
+        <span
+          class="sc-AxjAm sc-AxgMl YYvbv"
+        >
+          edit movie
+        </span>
+        <div
+          class="sc-Axmtr eqaOhC"
+        >
+          <label
+            class="sc-AxmLO sc-fznxsB dxRufY"
+            for=""
+          >
+            Movie Id
+          </label>
+          <label
+            class="sc-AxmLO sc-fznJRM gBBFrE"
+            for=""
+          >
+            1
+          </label>
+          <form
+            action="#"
+          >
+            <label
+              class="sc-AxmLO sc-fzqNJr fRGmBX"
+              for="title"
+            >
+              Title
+            </label>
+            <input
+              class="sc-fzoLsD sc-fzoLag bfKfQ"
+              id="title"
+              placeholder="Title"
+              type="text"
+              value=""
+            />
+            <label
+              class="sc-AxmLO sc-fzqNJr fRGmBX"
+              for="release_date"
+            >
+              Release Date
+            </label>
+            <div
+              class="sc-fzoXzr ejcWPC"
+            >
+              <div
+                class="react-datepicker-wrapper"
+              >
+                <div
+                  class="react-datepicker__input-container"
+                >
+                  <input
+                    class="sc-fzpans eqpJnX sc-fzoyAV fnVNcw"
+                    placeholder="Select Date"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+            <label
+              class="sc-AxmLO sc-fzqNJr fRGmBX"
+              for="poster_path"
+            >
+              Movie Url
+            </label>
+            <input
+              class="sc-fzoLsD sc-fzoLag bfKfQ"
+              id="poster_path"
+              placeholder="Movie Url here"
+              type="text"
+              value=""
+            />
+            <label
+              class="sc-AxmLO sc-fzqNJr fRGmBX"
+              for="genres"
+            >
+              Genre
+            </label>
+            <div
+              class="sc-fznyAO cDDUoP"
+            >
+              <div>
+                <div
+                  class="sc-fznZeY iCpQlg"
+                >
+                  <input
+                    autocomplete="off"
+                    class="sc-fzoLsD sc-fzokOt hIVePk"
+                    id="genres"
+                    placeholder="Select Genre"
+                    readonly=""
+                    type="text"
+                    value=""
+                  />
+                  <svg
+                    class="sc-fzqBZW loKwpz"
+                    fill="#F65261"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7 10l5 5 5-5z"
+                    />
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <label
+              class="sc-AxmLO sc-fzqNJr fRGmBX"
+              for="overview"
+            >
+              Overview
+            </label>
+            <input
+              class="sc-fzoLsD sc-fzoLag bfKfQ"
+              id="overview"
+              placeholder="Overview here"
+              type="text"
+              value=""
+            />
+            <label
+              class="sc-AxmLO sc-fzqNJr fRGmBX"
+              for="runtime"
+            >
+              Runtime
+            </label>
+            <input
+              class="sc-fzoLsD sc-fzoLag bfKfQ"
+              id="runtime"
+              placeholder="Runtime here"
+              type="number"
+              value=""
+            />
+            <label
+              class="sc-AxmLO sc-fzqNJr fRGmBX"
+              for="tagline"
+            >
+              Tagline
+            </label>
+            <input
+              class="sc-fzoLsD sc-fzoLag bfKfQ"
+              id="tagline"
+              placeholder="Tagline here"
+              type="text"
+              value=""
+            />
+            <div
+              class="sc-fznWqX cIWxJA"
+            >
+              <button
+                class="sc-fzozJi sc-fzoiQi blFihw"
+                type="reset"
+              >
+                Reset
+              </button>
+              <button
+                class="sc-fzozJi sc-fzoiQi iLlCHs"
+                type="submit"
+              >
+                Save
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

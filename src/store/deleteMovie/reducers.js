@@ -11,19 +11,19 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case DELETE_MOVIE_REQUEST_SUCCESS: {
+    case DELETE_MOVIE_REQUEST_START: {
       return {
         ...state,
         isLoaded: false,
       };
     }
-    case DELETE_MOVIE_REQUEST_ERROR: {
+    case DELETE_MOVIE_REQUEST_SUCCESS: {
       return {
         ...state,
         isLoaded: true,
       };
     }
-    case DELETE_MOVIE_REQUEST_START: {
+    case DELETE_MOVIE_REQUEST_ERROR: {
       const error = action.payload;
       return { ...state, error, isLoaded: true };
     }

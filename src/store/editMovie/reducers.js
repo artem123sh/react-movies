@@ -14,13 +14,13 @@ export default function (state = initialState, action) {
     case EDIT_MOVIE_REQUEST_SUCCESS: {
       return {
         ...state,
-        isLoaded: false,
+        isLoaded: true,
       };
     }
     case EDIT_MOVIE_REQUEST_START: {
       return {
         ...state,
-        isLoaded: true,
+        isLoaded: false,
       };
     }
     case EDIT_MOVIE_REQUEST_ERROR: {

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeleteMovieModal renders DeleteMovieModal's snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxirZ kYxXGN"
+  />
+  <div
+    class="sc-AxiKw ghPDlE"
+  >
+    <div>
+      <div
+        class="sc-AxhUy fSLCtT"
+      >
+        <span
+          class="sc-AxhCb fGYvSv"
+        >
+          ╳
+        </span>
+      </div>
+      <div
+        class="sc-AxheI iMsYLJ"
+      >
+        <span
+          class="sc-AxjAm sc-AxgMl YYvbv"
+        >
+          delete movie
+        </span>
+        <div
+          class="sc-Axmtr eqaOhC"
+        >
+          <span
+            class="sc-fzoLsD jqWCJU"
+          >
+            Are you sure you want to delete this movie?
+          </span>
+          <div
+            class="sc-fzozJi cpdHLS"
+          >
+            <button
+              class="sc-AxmLO hfReIG"
+              type="button"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

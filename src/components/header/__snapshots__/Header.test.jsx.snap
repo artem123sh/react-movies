@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders Header's snapshot 1`] = `
+<DocumentFragment>
+  <header
+    class="sc-AxhUy jPHroQ"
+  >
+    <div
+      class="sc-AxgMl gZVXZQ"
+    >
+      <div
+        class="sc-AxheI fMSHwp"
+      >
+        <span
+          class="sc-AxjAm hgfYjl"
+        >
+          netflix
+        </span>
+        <span
+          class="sc-AxjAm cIZlLY"
+        >
+          roulette
+        </span>
+      </div>
+      <button
+        class="sc-AxirZ sc-fzozJi wfBza"
+        type="button"
+      >
+        + Add Movie
+      </button>
+      <span
+        class="sc-AxiKw sc-AxhCb kZXyOP"
+      >
+        Find your movie
+      </span>
+      <input
+        class="sc-Axmtr iKXojB"
+        placeholder="What do you want to watch?"
+        value="search"
+      />
+      <button
+        class="sc-AxirZ sc-AxmLO jJBfsx"
+        type="button"
+      >
+        Search
+      </button>
+    </div>
+  </header>
+</DocumentFragment>
+`;

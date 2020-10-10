@@ -1,0 +1,232 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieDetails renders MovieDetails's snapshot 1`] = `
+<DocumentFragment>
+  <header
+    class="sc-AxhCb nOGJ"
+  >
+    <div
+      class="sc-AxhUy gvViMF"
+    >
+      <span
+        class="sc-AxjAm hgfYjl"
+      >
+        netflix
+      </span>
+      <span
+        class="sc-AxjAm cIZlLY"
+      >
+        roulette
+      </span>
+    </div>
+    <a
+      href="/"
+    >
+      <span
+        class="sc-AxgMl eZZxdO"
+      >
+        ⚲
+      </span>
+    </a>
+    <div
+      class="sc-AxheI keyjSi"
+    >
+      <img
+        alt="poster"
+        class="sc-AxirZ jsoWpm"
+        src="http://404.404"
+      />
+    </div>
+    <div
+      class="sc-fzoLsD iSxJZT"
+    >
+      <div
+        class="sc-fzpans kOqDuY"
+      >
+        <span
+          class="sc-AxiKw MiEfa"
+        />
+        <span
+          class="sc-Axmtr eXOSeH"
+        >
+          1
+        </span>
+      </div>
+      <p
+        class="sc-AxmLO gqtsqu"
+      />
+      <div
+        class="sc-fzpans kOqDuY"
+      >
+        <p
+          class="sc-fzozJi fiaFkc"
+        >
+          2020
+        </p>
+        <p
+          class="sc-fzozJi fiaFkc"
+        >
+          1 mins
+        </p>
+      </div>
+      <p
+        class="sc-AxmLO gqtsqu"
+      />
+    </div>
+  </header>
+</DocumentFragment>
+`;
+
+exports[`MovieDetails renders MovieDetails's snapshot with default vote average 1`] = `
+<DocumentFragment>
+  <header
+    class="sc-AxhCb nOGJ"
+  >
+    <div
+      class="sc-AxhUy gvViMF"
+    >
+      <span
+        class="sc-AxjAm hgfYjl"
+      >
+        netflix
+      </span>
+      <span
+        class="sc-AxjAm cIZlLY"
+      >
+        roulette
+      </span>
+    </div>
+    <a
+      href="/"
+    >
+      <span
+        class="sc-AxgMl eZZxdO"
+      >
+        ⚲
+      </span>
+    </a>
+    <div
+      class="sc-AxheI keyjSi"
+    >
+      <img
+        alt="poster"
+        class="sc-AxirZ jsoWpm"
+        src="http://404.404"
+      />
+    </div>
+    <div
+      class="sc-fzoLsD iSxJZT"
+    >
+      <div
+        class="sc-fzpans kOqDuY"
+      >
+        <span
+          class="sc-AxiKw MiEfa"
+        />
+        <span
+          class="sc-Axmtr eXOSeH"
+        >
+          0.0
+        </span>
+      </div>
+      <p
+        class="sc-AxmLO gqtsqu"
+      />
+      <div
+        class="sc-fzpans kOqDuY"
+      >
+        <p
+          class="sc-fzozJi fiaFkc"
+        >
+          2020
+        </p>
+        <p
+          class="sc-fzozJi fiaFkc"
+        >
+          1 mins
+        </p>
+      </div>
+      <p
+        class="sc-AxmLO gqtsqu"
+      />
+    </div>
+  </header>
+</DocumentFragment>
+`;
+
+exports[`MovieDetails renders MovieDetails's snapshot with green vote average 1`] = `
+<DocumentFragment>
+  <header
+    class="sc-AxhCb nOGJ"
+  >
+    <div
+      class="sc-AxhUy gvViMF"
+    >
+      <span
+        class="sc-AxjAm hgfYjl"
+      >
+        netflix
+      </span>
+      <span
+        class="sc-AxjAm cIZlLY"
+      >
+        roulette
+      </span>
+    </div>
+    <a
+      href="/"
+    >
+      <span
+        class="sc-AxgMl eZZxdO"
+      >
+        ⚲
+      </span>
+    </a>
+    <div
+      class="sc-AxheI keyjSi"
+    >
+      <img
+        alt="poster"
+        class="sc-AxirZ jsoWpm"
+        src="http://404.404"
+      />
+    </div>
+    <div
+      class="sc-fzoLsD iSxJZT"
+    >
+      <div
+        class="sc-fzpans kOqDuY"
+      >
+        <span
+          class="sc-AxiKw MiEfa"
+        />
+        <span
+          class="sc-Axmtr kHYWEb"
+        >
+          8
+        </span>
+      </div>
+      <p
+        class="sc-AxmLO gqtsqu"
+      />
+      <div
+        class="sc-fzpans kOqDuY"
+      >
+        <p
+          class="sc-fzozJi fiaFkc"
+        >
+          2020
+        </p>
+        <p
+          class="sc-fzozJi fiaFkc"
+        >
+          1 mins
+        </p>
+      </div>
+      <p
+        class="sc-AxmLO gqtsqu"
+      />
+    </div>
+  </header>
+</DocumentFragment>
+`;
