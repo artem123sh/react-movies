@@ -12,7 +12,16 @@ const App = () => (
     <ErrorBoundary>
       <Switch>
         <Route exact path="/" component={SearchMovie} />
-        <Route exact path="/film/:id" component={MovieDetails} />
+        <Route
+          exact
+          path="/film/:id"
+          render={() => (
+            <>
+              <MovieDetails />
+              <Movies />
+            </>
+          )}
+        />
         <Route
           exact
           path="/search/:search"

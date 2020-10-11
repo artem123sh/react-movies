@@ -3,6 +3,7 @@ import {
   GET_MOVIES_REQUEST_START,
   GET_MOVIES_REQUEST_SUCCESS,
   GET_MOVIES_REQUEST_ERROR,
+  SET_MOVIES_SEARCH,
 } from './actionTypes';
 
 export const getMoviesRequestSuccess = (movies) => ({
@@ -19,14 +20,23 @@ export const getMoviesRequestError = (error) => ({
   payload: { error },
 });
 
+export const setMoviesSearch = (search) => ({
+  type: SET_MOVIES_SEARCH,
+  payload: { search },
+});
+
 export const getMovies = (
   {
     filter, offset: currentOffset, sortBy, sortOrder, search,
   },
 ) => async (dispatch, getState, apiUrl) => {
+  const previousSearch = getState().movies.search;
   const urlSearchParams = new URLSearchParams({
-    filter, offset: currentOffset, sortBy, sortOrder, search, searchBy: search ? 'title' : '',
+    filter, offset: currentOffset, sortBy, sortOrder, search: search || previousSearch, searchBy: search || previousSearch ? 'title' : '',
   });
+  if (search) {
+    dispatch(setMoviesSearch(search));
+  }
   dispatch(getMoviesRequestStart());
   return new Promise((resolve, reject) => {
     (async () => {

@@ -2,6 +2,7 @@ import {
   GET_MOVIES_REQUEST_SUCCESS,
   GET_MOVIES_REQUEST_ERROR,
   GET_MOVIES_REQUEST_START,
+  SET_MOVIES_SEARCH,
 } from './actionTypes';
 
 const initialState = {
@@ -9,6 +10,7 @@ const initialState = {
   offset: 0,
   totalAmount: 0,
   error: null,
+  search: '',
 };
 
 export default function (state = initialState, action) {
@@ -33,6 +35,11 @@ export default function (state = initialState, action) {
     case GET_MOVIES_REQUEST_ERROR: {
       const error = action.payload;
       return { ...state, error };
+    }
+    case SET_MOVIES_SEARCH: {
+      const { search } = action.payload;
+      console.log('REDUCER', search);
+      return { ...state, search };
     }
     default:
       return state;
