@@ -14,18 +14,22 @@ const StyledTitle = styled(Title)`
 `;
 
 const StyledHeader = styled.header`
-  height: 25rem;
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 10%;
-  position: relative;
+  flex: 1;
   background-image: linear-gradient(
     rgba(0, 0, 0, 0.7), 
     rgba(0, 0, 0, 0.7)
   ), url(${background});
   background-size: 110%;
+  margin-bottom: 1rem;
+`;
+
+const StyledContainer = styled.div`
+  height: 25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10%;
+  position: relative;
 `;
 
 const LogoContainer = styled.div`
@@ -57,18 +61,33 @@ const AddMovieButton = styled(Button)`
   right: 5%;
 `;
 
-const Header = ({ toggleAddMovieModal }) => (
-  <StyledHeader>
-    <LogoContainer><Logo /></LogoContainer>
-    <AddMovieButton onClick={toggleAddMovieModal}>+ Add Movie</AddMovieButton>
-    <StyledTitle>Find your movie</StyledTitle>
-    <SearchMovieInput placeholder="What do you want to watch?" />
-    <SearchButton size="large" variant="contained" onClick={() => {}}>Search</SearchButton>
-  </StyledHeader>
-);
+const Header = ({
+  toggleAddMovieModal, search, handleSearchChange, handleSearch,
+}) => {
+  const onEnterDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  return (
+    <StyledHeader>
+      <StyledContainer>
+        <LogoContainer><Logo /></LogoContainer>
+        <AddMovieButton onClick={toggleAddMovieModal}>+ Add Movie</AddMovieButton>
+        <StyledTitle>Find your movie</StyledTitle>
+        <SearchMovieInput placeholder="What do you want to watch?" value={search} onChange={handleSearchChange} onKeyDown={onEnterDown} />
+        <SearchButton size="large" variant="contained" onClick={handleSearch}>Search</SearchButton>
+      </StyledContainer>
+    </StyledHeader>
+  );
+};
 
 Header.propTypes = {
   toggleAddMovieModal: PropTypes.func.isRequired,
+  handleSearchChange: PropTypes.func.isRequired,
+  handleSearch: PropTypes.func.isRequired,
+  search: PropTypes.string.isRequired,
 };
 
 export default Header;

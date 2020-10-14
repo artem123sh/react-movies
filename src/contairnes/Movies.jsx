@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import MoviesGrid from '../components/grids/MoviesGrid';
 import EditMovieModal from '../components/modals/EditMovieModal';
 import DeleteMovieModal from '../components/modals/DeleteMovieModal';
@@ -19,6 +20,7 @@ const Movies = ({
 }) => {
   const [editModal, setEditModal] = useState(null);
   const [deleteModal, setDeleteModal] = useState(null);
+  const { search } = useParams();
 
   const toggleDeleteMovie = (movieId) => setDeleteModal(
     (currentDeleteModal) => (currentDeleteModal ? null : movieId),
@@ -32,9 +34,9 @@ const Movies = ({
 
   const getMoviesCb = useCallback(async () => {
     await getMovies({
-      filter, offset, sortBy, sortOrder,
+      filter, offset, sortBy, sortOrder, search,
     });
-  }, [filter, offset, sortBy, sortOrder]);
+  }, [filter, offset, sortBy, sortOrder, search]);
 
   useEffect(() => {
     getMoviesCb();

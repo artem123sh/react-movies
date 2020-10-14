@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import Header from '../components/header/Header';
 import AddMovieModal from '../components/modals/AddMovieModal';
 import { addMovie as addMovieAction } from '../store/addMovie/actions';
@@ -11,22 +12,39 @@ const SearchMovie = ({
   addMovie, getMovies, filter, offset, sortBy, sortOrder,
 }) => {
   const [addMovieModal, setAddMovieModal] = useState(false);
+  const [search, setSearch] = useState('');
+  const history = useHistory();
 
   const toggleAddMovieModal = () => {
     setAddMovieModal((newAddMovieModal) => !newAddMovieModal);
   };
 
+  const handleSearch = async () => {
+    if (search) {
+      history.push(`/search/${search}`);
+    }
+  };
+
   const handleMovieAdd = async (movieToAdd) => {
     await addMovie(movieToAdd);
     await getMovies({
-      filter, offset, sortBy, sortOrder,
+      filter, offset, sortBy, sortOrder, search,
     });
     setAddMovieModal(false);
   };
 
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <>
-      <Header toggleAddMovieModal={toggleAddMovieModal} />
+      <Header
+        toggleAddMovieModal={toggleAddMovieModal}
+        handleSearch={handleSearch}
+        search={search}
+        handleSearchChange={handleSearchChange}
+      />
       {addMovieModal && (
         <AddMovieModal
           handleMovieAdd={handleMovieAdd}

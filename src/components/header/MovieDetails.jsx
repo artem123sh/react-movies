@@ -13,6 +13,7 @@ const Title = styled.span`
 `;
 
 const MovieDetailsContainer = styled.header`
+  flex-grow: 1;
   display: flex;
   margin-bottom: 1rem;
   padding: 5rem 5% 3rem 5%;
@@ -44,6 +45,8 @@ const StyledPoster = styled(Poster)`
   top: 15%;
   left: 5%;
   flex-grow: 1;
+  min-width: 20rem;
+  max-width: 25rem;
 `;
 
 const Rating = styled.span`
@@ -51,8 +54,8 @@ const Rating = styled.span`
   margin: 0 2rem;
   border-radius: 50%;
   font-size: 2rem;
-  height: 4rem;
-  width: 4rem;
+  min-width: 4rem;
+  max-width: 4rem;
   text-align: center;
   line-height: 4rem;
   color:  ${({ voteAverage }) => {
@@ -100,7 +103,7 @@ const MovieDetails = ({
     <MovieDetailsRightPanel>
       <Section>
         <Title>{title}</Title>
-        <Rating voteAverage={voteAverage}>{voteAverage}</Rating>
+        <Rating voteAverage={voteAverage}>{voteAverage || '0.0'}</Rating>
       </Section>
       <MovieTextDetails>{tagline}</MovieTextDetails>
       <Section>

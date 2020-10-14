@@ -5,16 +5,38 @@ import Movies from './Movies';
 import MovieDetails from './MovieDetails';
 import SearchMovie from './SearchMovie';
 import ErrorBoundary from '../components/errors/ErrorBoundary';
+import ErrorView from '../components/errors/ErrorView';
 
 const App = () => (
-  <ErrorBoundary>
-    <Switch>
-      <Route exact path="/" component={SearchMovie} />
-      <Route exact path="/:id" component={MovieDetails} />
-    </Switch>
-    <Movies />
+  <>
+    <ErrorBoundary>
+      <Switch>
+        <Route exact path="/" component={SearchMovie} />
+        <Route
+          exact
+          path="/film/:id"
+          render={() => (
+            <>
+              <MovieDetails />
+              <Movies />
+            </>
+          )}
+        />
+        <Route
+          exact
+          path="/search/:search"
+          render={() => (
+            <>
+              <SearchMovie />
+              <Movies />
+            </>
+          )}
+        />
+        <Route exact path="*" render={() => <ErrorView error="404" errorLabel="Page Not Found" />} />
+      </Switch>
+    </ErrorBoundary>
     <Footer />
-  </ErrorBoundary>
+  </>
 );
 
 export default App;

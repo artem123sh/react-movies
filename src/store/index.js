@@ -2,12 +2,13 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 
 import thunk from 'redux-thunk';
 import movies from './movies/reducers';
+import movie from './movie/reducers';
 import moviesSorting from './moviesSorting/reducers';
 import movieFilters from './movieFilters/reducers';
 
 const rootReducer = combineReducers(
   {
-    movies, moviesSorting, movieFilters,
+    movie, movies, moviesSorting, movieFilters,
   },
 );
 

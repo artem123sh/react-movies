@@ -5,10 +5,14 @@ import { BACKGROUND } from '../../theme';
 import GridControls from './MoviesGridControls';
 import MoviesFoundLabel from './MoviesTotalFoundLabel';
 import MovieGridItem from './MoviesGridItem';
+import NoMovieFound from './NoMovieFound';
 
 const StyledContainer = styled.div`
+  flex-grow: 1;
   background: ${BACKGROUND};
   padding: 0 5%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Grid = styled.div`
@@ -30,21 +34,25 @@ const MoviesGrid = ({
       handleFilterChange={handleFilterChange}
       handleSortChange={handleSortChange}
     />
-    <MoviesFoundLabel number={totalAmount} />
-    <Grid>
-      {movies.map((movie) => (
-        <MovieGridItem
-          key={movie.id}
-          id={movie.id}
-          title={movie.title}
-          releaseDate={movie.release_date}
-          posterPath={movie.poster_path}
-          genres={movie.genres}
-          handleEditMovie={handleEditMovie}
-          toggleDeleteMovie={toggleDeleteMovie}
-        />
-      ))}
-    </Grid>
+    {movies.length ? (
+      <>
+        <MoviesFoundLabel number={totalAmount} />
+        <Grid>
+          {movies.map((movie) => (
+            <MovieGridItem
+              key={movie.id}
+              id={movie.id}
+              title={movie.title}
+              releaseDate={movie.release_date}
+              posterPath={movie.poster_path}
+              genres={movie.genres}
+              handleEditMovie={handleEditMovie}
+              toggleDeleteMovie={toggleDeleteMovie}
+            />
+          ))}
+        </Grid>
+      </>
+    ) : <NoMovieFound />}
   </StyledContainer>
 );
 

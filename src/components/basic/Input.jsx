@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { FOOTER_BACKGROUND } from '../../theme';
 
 const Input = ({
-  className, placeholder, defaultValue, id, onClick, autocomplete, value, onChange, type, readonly,
+  className, placeholder, defaultValue, id, onClick,
+  autocomplete, value, onChange, type, readonly, onKeyDown,
 }) => (
   <input
     type={type}
@@ -17,6 +18,7 @@ const Input = ({
     onClick={onClick}
     onChange={onChange}
     readOnly={readonly}
+    onKeyDown={onKeyDown}
   />
 );
 
@@ -28,6 +30,7 @@ Input.defaultProps = {
   id: undefined,
   autocomplete: undefined,
   onClick: undefined,
+  onKeyDown: undefined,
   onChange: undefined,
   readonly: undefined,
   type: undefined,
@@ -44,6 +47,7 @@ Input.propTypes = {
   type: PropTypes.string,
   onClick: PropTypes.func,
   onChange: PropTypes.func,
+  onKeyDown: PropTypes.func,
 };
 
 const StyledInput = styled(Input)`

@@ -2,21 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+const StyledContainer = styled.div`
+  color: inherit;
+  font-size: 1.3rem;
+  padding: 1rem 0;
+`;
+
 const MoviesFoundLabel = ({ number }) => (
-  <div>
+  <StyledContainer>
     <b>{`${number} `}</b>
     movies found
-  </div>
+  </StyledContainer>
 );
 
 MoviesFoundLabel.propTypes = {
   number: PropTypes.number.isRequired,
 };
 
-const StyledMoviesFoundLabel = styled(MoviesFoundLabel)`
-  color: inherit;
-  font-size: 1.3rem;
-  padding: 1rem 0;
-`;
-
-export default StyledMoviesFoundLabel;
+export default MoviesFoundLabel;
