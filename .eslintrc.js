@@ -1,6 +1,7 @@
 module.exports = {
   parser: 'babel-eslint',
   env: {
+    jest: true,
     browser: true,
     es2020: true,
   },
@@ -21,5 +22,6 @@ module.exports = {
   rules: {
     'react/state-in-constructor': 1,
     'react/button-has-type': 0,
+    'import/no-default-export': 0,
   },
 };

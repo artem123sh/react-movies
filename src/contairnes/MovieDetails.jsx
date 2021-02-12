@@ -8,7 +8,6 @@ import { getMovie as getMovieAction } from '../store/movie/actions';
 const MovieDetails = ({ getMovie, movie, error }) => {
   const { id } = useParams();
   const history = useHistory();
-
   useEffect(() => {
     getMovie(Number(id));
     globalThis.scrollTo(0, 0);
@@ -21,17 +20,17 @@ const MovieDetails = ({ getMovie, movie, error }) => {
   }, [error]);
 
   return (
-    movie && (
-    <MovieDetailsView
-      title={movie.title}
-      releaseDate={movie.release_date}
-      posterPath={movie.poster_path}
-      runtime={movie.runtime}
-      tagline={movie.tagline}
-      voteAverage={movie.vote_average}
-      overview={movie.overview}
-    />
-    )
+    movie ? (
+      <MovieDetailsView
+        title={movie.title}
+        releaseDate={movie.release_date}
+        posterPath={movie.poster_path}
+        runtime={movie.runtime}
+        tagline={movie.tagline}
+        voteAverage={movie.vote_average}
+        overview={movie.overview}
+      />
+    ) : null
   );
 };
 

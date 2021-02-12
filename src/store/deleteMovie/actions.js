@@ -20,12 +20,12 @@ export const deleteMovieRequestError = (error) => ({
 
 export const deleteMovie = (movieId) => async (dispatch, getState, apiUrl) => {
   dispatch(deleteMovieRequestStart());
-    try {
-      const result = await axios.delete(`${apiUrl}/${movieId}`);
-      dispatch(deleteMovieRequestSuccess());
-      return Promise.resolve(result);
-    } catch (err) {
-      dispatch(deleteMovieRequestError(err.message));
-      return Promise.reject(err);
-    }
+  try {
+    const result = await axios.delete(`${apiUrl}/${movieId}`);
+    dispatch(deleteMovieRequestSuccess());
+    return Promise.resolve(result);
+  } catch (err) {
+    dispatch(deleteMovieRequestError(err.message));
+    return Promise.reject(err);
+  }
 };

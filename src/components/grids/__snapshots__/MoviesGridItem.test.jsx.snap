@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoviesGridItem renders MoviesGridItem's snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-fzpans dbqWmk"
+  >
+    <div>
+      <button
+        class="sc-AxjAm gBCDJc sc-AxheI bPoRXi"
+      >
+        ⠇
+      </button>
+    </div>
+    <a
+      class="sc-fzplWN hIkfLR"
+      href="/film/1"
+    >
+      <div
+        class="sc-Axmtr hYuHwt"
+      >
+        <img
+          alt="poster"
+          class="sc-AxgMl cGfBYN"
+          src="http://404.404"
+        />
+      </div>
+      <div>
+        <span
+          class="sc-AxmLO eUGNiG"
+        />
+        <span
+          class="sc-fzozJi dzcPzR"
+        >
+          2020
+        </span>
+        <span
+          class="sc-fzoLsD egQtQs"
+        />
+      </div>
+    </a>
+  </div>
+</DocumentFragment>
+`;

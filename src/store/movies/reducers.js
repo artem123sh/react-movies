@@ -18,6 +18,7 @@ export default function (state = initialState, action) {
     case GET_MOVIES_REQUEST_START: {
       return {
         ...state,
+        error: null,
         movies: [],
         offset: 0,
         totalAmount: 0,

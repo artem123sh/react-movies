@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieForm renders MovieForm's snapshot 1`] = `
+<DocumentFragment>
+  <form
+    action="#"
+  >
+    <label
+      class="sc-AxmLO sc-fzozJi fkdgxq"
+      for="title"
+    >
+      Title
+    </label>
+    <input
+      class="sc-AxjAm sc-fzpans foPLdB"
+      id="title"
+      placeholder="Title"
+      type="text"
+      value=""
+    />
+    <label
+      class="sc-AxmLO sc-fzozJi fkdgxq"
+      for="release_date"
+    >
+      Release Date
+    </label>
+    <div
+      class="sc-fzplWN jjvCdU"
+    >
+      <div
+        class="react-datepicker-wrapper"
+      >
+        <div
+          class="react-datepicker__input-container"
+        >
+          <input
+            class="sc-AxirZ vNiBr sc-fzoLsD bCdSFp"
+            placeholder="Select Date"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <label
+      class="sc-AxmLO sc-fzozJi fkdgxq"
+      for="poster_path"
+    >
+      Movie Url
+    </label>
+    <input
+      class="sc-AxjAm sc-fzpans foPLdB"
+      id="poster_path"
+      placeholder="Movie Url here"
+      type="text"
+      value=""
+    />
+    <label
+      class="sc-AxmLO sc-fzozJi fkdgxq"
+      for="genres"
+    >
+      Genre
+    </label>
+    <div
+      class="sc-AxhCb jZxptO"
+    >
+      <div>
+        <div
+          class="sc-AxgMl fqNPUb"
+        >
+          <input
+            autocomplete="off"
+            class="sc-AxjAm sc-AxheI fNdnhK"
+            id="genres"
+            placeholder="Select Genre"
+            readonly=""
+            type="text"
+            value=""
+          />
+          <svg
+            class="sc-Axmtr fvsATX"
+            fill="#F65261"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <label
+      class="sc-AxmLO sc-fzozJi fkdgxq"
+      for="overview"
+    >
+      Overview
+    </label>
+    <input
+      class="sc-AxjAm sc-fzpans foPLdB"
+      id="overview"
+      placeholder="Overview here"
+      type="text"
+      value=""
+    />
+    <label
+      class="sc-AxmLO sc-fzozJi fkdgxq"
+      for="runtime"
+    >
+      Runtime
+    </label>
+    <input
+      class="sc-AxjAm sc-fzpans foPLdB"
+      id="runtime"
+      placeholder="Runtime here"
+      type="number"
+      value=""
+    />
+    <label
+      class="sc-AxmLO sc-fzozJi fkdgxq"
+      for="tagline"
+    >
+      Tagline
+    </label>
+    <input
+      class="sc-AxjAm sc-fzpans foPLdB"
+      id="tagline"
+      placeholder="Tagline here"
+      type="text"
+      value=""
+    />
+    test
+  </form>
+</DocumentFragment>
+`;

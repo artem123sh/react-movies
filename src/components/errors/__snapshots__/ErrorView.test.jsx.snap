@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorView renders ErrorView's snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxiKw cLGzQq"
+  >
+    <div
+      class="sc-AxhUy gZzNyQ"
+    >
+      <div
+        class="sc-AxhCb hceobT"
+      >
+        <span
+          class="sc-AxjAm hgfYjl"
+        >
+          netflix
+        </span>
+        <span
+          class="sc-AxjAm cIZlLY"
+        >
+          roulette
+        </span>
+      </div>
+      <span
+        class="sc-AxgMl varXG"
+      >
+        label
+      </span>
+      <span
+        class="sc-AxheI jJLfGq"
+      >
+        error
+      </span>
+      <a
+        href="/"
+      >
+        <button
+          class="sc-AxirZ gIFDjz"
+          type="button"
+        >
+          Go Back To Home
+        </button>
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;

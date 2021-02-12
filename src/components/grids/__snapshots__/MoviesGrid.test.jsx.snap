@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoviesGrid renders MoviesGrid's snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-fzoNJl jTnteU"
+  >
+    <div
+      class="sc-AxmLO jMiEjH"
+    >
+      <div>
+        <button
+          class="sc-Axmtr sc-fzplWN fyaKmV"
+          type="button"
+        >
+          All
+        </button>
+        <button
+          class="sc-Axmtr sc-fzplWN gKJFVO"
+          type="button"
+        >
+          Documentary
+        </button>
+        <button
+          class="sc-Axmtr sc-fzplWN gKJFVO"
+          type="button"
+        >
+          Comedy
+        </button>
+        <button
+          class="sc-Axmtr sc-fzplWN gKJFVO"
+          type="button"
+        >
+          Horror
+        </button>
+        <button
+          class="sc-Axmtr sc-fzplWN gKJFVO"
+          type="button"
+        >
+          Crime
+        </button>
+      </div>
+      <div
+        class="sc-fzozJi wjHre"
+      >
+        <span
+          class="sc-fzoLsD PYQVh"
+        >
+          Sort By
+        </span>
+        <div
+          class="sc-AxiKw lkoKWO sc-fzpans cMhZxt"
+        >
+          <div>
+            <button
+              class="sc-AxjAm sc-AxhUy iFRYwR"
+              type="button"
+            >
+              <span
+                class="sc-AxgMl bkcfeM"
+              >
+                Release Date
+              </span>
+              <svg
+                class="sc-AxheI ctYtXF"
+                fill="#F65261"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7 10l5 5 5-5z"
+                />
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-fzqNqU jIEkDE"
+    >
+      <span
+        class="sc-fzqARJ sc-fzoyTs fWZkaA"
+      >
+        No Movies Found
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
